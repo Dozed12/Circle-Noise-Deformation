@@ -11,7 +11,7 @@
 #define deltaModX 600
 #define deltaModY 0
 
-#define deformScale 100
+#define deformScale 20
 
 #define miliStep 1
 
@@ -84,9 +84,9 @@ std::vector<float> GenerateDeform(float rng) {
 
 	std::vector<float> ret;
 
-	for (size_t i = 0; i < points/2; i++)
+	for (float i = 0; i < points/2; i++)
 	{
-		ret.push_back(SimplexNoise::noise(rng + i));
+		ret.push_back(SimplexNoise::noise(rng + i/10));
 	}
 
 	return ret;
@@ -104,7 +104,7 @@ std::vector<float> AdvanceDeform(std::vector<float> deform, float rng, float & t
 
 	totalDelta++;
 
-	ret[0] = SimplexNoise::noise(rng + totalDelta);	
+	ret[0] = SimplexNoise::noise(rng + totalDelta/10);	
 
 	return ret;
 
